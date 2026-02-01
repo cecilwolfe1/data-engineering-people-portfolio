@@ -1,0 +1,13 @@
+# .gitignore
+# Ignore data files
+data/raw/*
+data/processed/*
+
+# Ignore system files
+.DS_Store
+__pycache__/
+*.pyc
+
+# Ignore virtual environments
+venv/
+.env
