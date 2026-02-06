@@ -1,11 +1,33 @@
-# People Analytics Data Pipeline
+# HR Data Engineering Pipeline
 
 ## Project Overview
-This repository demonstrates a scalable Extract, Transform, Load (ETL) pipeline for People Analytics data.
+This project demonstrates a full **Extract, Transform, Load (ETL)** pipeline designed to handle high-volume employee data. 
 
-**Goal:** Transitioning manual ad-hoc reporting into an automated engineering workflow.
+The goal was to migrate away from manual Excel/CSV workflows into an automated, version-controlled engineering pipeline. It simulates a real-world scenario where raw data is ingested from an upstream source (simulated via Python), cleaned/validated using Pandas, and optimized for analytical querying using **Parquet** and **DuckDB**.
+
+## Architecture
+**`Raw CSV`** → **`Python Ingestion`** → **`Pandas Transformation`** → **`Parquet Storage`** → **`DuckDB Analytics`**
+
+### Key Engineering Decisions
+* **Idempotency:** The pipeline is designed to be run multiple times without corrupting data. File paths are dynamically generated using timestamps to preserve history (Slowly Changing Dimensions Type 0 concept).
+* **Schema Enforcement:** Switched from CSV to **Parquet** in the processed layer. This ensures data types (like Dates and Floats) are preserved, reducing storage size by ~60% and improving query speed.
+* **Decoupled Compute/Storage:** Utilized **DuckDB** to run SQL queries directly on Parquet files, eliminating the need for a heavy Data Warehouse for lightweight analytics.
+* **Defensive Coding:** Implemented relative path handling (`pathlib`) to ensure the pipeline runs seamlessly across Windows and Linux environments.
 
 ## Tech Stack
-* **Python**: Data generation and transformation
-* **SQL**: Schema design and business logic
-* **Architecture**: Simulating a modern data warehouse environment
+* **Language:** Python 3.9+
+* **Libraries:** Pandas, Faker, Pathlib
+* **Storage:** Parquet (Columnar), CSV (Raw)
+* **Analytics:** DuckDB, Jupyter Notebooks, SQL
+
+## Repository Structure
+```text
+├── data/
+│   ├── raw/             # Generated mock data (simulating S3 bucket)
+│   ├── processed/       # Cleaned Parquet files
+├── notebooks/           # Jupyter notebooks for SQL analysis
+├── src/
+│   ├── ingestion/       # Scripts to generate/fetch data
+│   ├── transform/       # Logic for cleaning and schema enforcement
+├── requirements.txt     # Python dependencies
+└── README.md
