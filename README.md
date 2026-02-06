@@ -30,20 +30,26 @@ The goal was to migrate away from manual Excel/CSV workflows into an automated, 
 │   ├── ingestion/       # Scripts to generate/fetch data
 │   ├── transform/       # Logic for cleaning and schema enforcement
 ├── requirements.txt     # Python dependencies
-└── README.md
+└── README.
+```
 
-🚀 How to Run
+How to Run
+```bash
 1. Clone the repository
-```git clone <your-repo-url>```
-
+git clone <your-repo-url>
+```
+```bash
 2. Install Dependencies
-```pip install -r requirements.txt```
-
+pip install -r requirements.txt
+```
+```bash
 3. Run the Pipeline
-```# Step 1: Generate Raw Data
+# Step 1: Generate Raw Data
 python src/ingestion/generate_data.py
 
 # Step 2: Clean and Transform
-python src/transform/clean_data.py```
+python src/transform/clean_data.py
+```
 
-4. Run and view queries on the data ```notebooks/analysis.ipynb```
+4. Run and view queries on the data ```bash
+notebooks/analysis.ipynb```
