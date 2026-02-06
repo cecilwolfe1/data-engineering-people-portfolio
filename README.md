@@ -36,7 +36,7 @@ The goal was to migrate away from manual Excel/CSV workflows into an automated, 
 ## How to Run
 1. Clone the repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/cecilwolfe1/data-engineering-people-portfolio.git
 ```
 2. Install Dependencies
 ```bash
